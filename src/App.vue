@@ -2,7 +2,7 @@
   <div id="app">
     <HeadreComp
     :search="readArrFilm"
-    @searchFilms="writeFilm"
+    @startSearch="writeFilm"
     />
 
     <main>
@@ -41,8 +41,8 @@ export default {
         params:{
           api_key: this.apiKey,
           query: this.query,
-          language:'it-IT'
-        }
+          language:'it-IT',
+        },
       })
       .then(resp => {
         console.log(resp.data.results);
@@ -52,10 +52,12 @@ export default {
       .catch(err =>{
         console.log(err);
       })
+      
     },
 
     writeFilm(text){
       this.query = text;
+      console.log(this.query);
     }
 
   }
