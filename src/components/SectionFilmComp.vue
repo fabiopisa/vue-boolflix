@@ -1,10 +1,12 @@
 <template>
   <section class="d-flex flex-wrap">
-    <ul class="col-2 ">
-      <li>titolo</li>
-      <li>titolo originale</li>
-      <li>lingua</li>
-      <li>voto</li>
+    <ul 
+    v-for="(film, index) in films" :key="index"
+    class="col-2 ">
+      <li>{{film.title}}</li>
+      <li>{{film.original_title}}</li>
+      <li>{{film.original_language}}</li>
+      <li>{{film.vote_average}}</li>
     </ul>
     
   </section>
@@ -12,7 +14,10 @@
 
 <script>
 export default {
- name:'SectionFilmComp'
+ name:'SectionFilmComp',
+ props:{
+   films: Array,
+ }
 }
 </script>
 

@@ -3,12 +3,15 @@
     <HeadreComp/>
 
     <main>
-      <SectionFilmComp/>
+      <SectionFilmComp
+      
+      />
     </main>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
 import HeadreComp from './components/HeadreComp.vue'
 import SectionFilmComp from './components/SectionFilmComp.vue'
 
@@ -25,11 +28,13 @@ export default {
       apiURL:'https://api.themoviedb.org/3/search/movie',
       apiKey:'fe3d6561f77f954abef97c97d11254e0',
       query:'ritorno al futuro',
+      arrFilm:[],
     }
   },
   methods:{
+    
     readArrFilm(){
-      this.axios.get(this.apiURL,{
+      axios.get(this.apiURL,{
         params:{
           api_key: this.apiKey,
           query: this.query,
@@ -37,12 +42,19 @@ export default {
         }
       })
       .then(resp => {
-        console.log(resp.results);
+        console.log(resp.data.results);
+        this.arrFilm = resp.data.results;
+        console.log(this.arrFilm);
       })
       .catch(err =>{
         console.log(err);
       })
     },
+
+    arrPush(){
+       this.readArrFilm()
+    },
+
   }
 }
 </script>
