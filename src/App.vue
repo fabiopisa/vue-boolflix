@@ -1,10 +1,13 @@
 <template>
   <div id="app">
-    <HeadreComp/>
+    <HeadreComp
+    :search="readArrFilm"
+    @searchFilms="writeFilm"
+    />
 
     <main>
       <SectionFilmComp
-      
+      :films="arrFilm"
       />
     </main>
   </div>
@@ -12,8 +15,8 @@
 
 <script>
 import axios from 'axios';
-import HeadreComp from './components/HeadreComp.vue'
-import SectionFilmComp from './components/SectionFilmComp.vue'
+import HeadreComp from './components/HeadreComp.vue';
+import SectionFilmComp from './components/SectionFilmComp.vue';
 
 
 export default {
@@ -27,7 +30,7 @@ export default {
     return{
       apiURL:'https://api.themoviedb.org/3/search/movie',
       apiKey:'fe3d6561f77f954abef97c97d11254e0',
-      query:'ritorno al futuro',
+      query:'',
       arrFilm:[],
     }
   },
@@ -51,9 +54,9 @@ export default {
       })
     },
 
-    arrPush(){
-       this.readArrFilm()
-    },
+    writeFilm(text){
+      this.query = text;
+    }
 
   }
 }

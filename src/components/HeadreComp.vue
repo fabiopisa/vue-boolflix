@@ -5,15 +5,32 @@
     </div>
 
     <div class="box-search col-3 offset-4 d-flex justify-content-evenly">
-      <input type="text" placeholder="Cerca qui il tuo film...">
-      <button class="btn btn-outline-danger">Cerca</button>
+      <input
+      v-model.trim="strFilm" 
+      type="text" placeholder="Cerca qui il tuo film...">
+      <button
+      @click="search" 
+      class="btn btn-outline-danger">Cerca</button>
     </div>
   </header>
 </template>
 
 <script>
 export default {
- name:'HeaderComp'
+ name:'HeaderComp',
+ props:{
+   search: Function
+ },
+ data(){
+   return{
+     strFilm:'',
+   }
+ },
+ methods:{
+    startSearch(){
+      this.$emit('searchFilms', this.strFilm);
+    }
+ }
 }
 </script>
 
