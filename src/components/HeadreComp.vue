@@ -6,6 +6,7 @@
 
     <div class="box-search col-3 offset-4 d-flex justify-content-evenly">
       <input
+      @click="reset"
       @keyup="startSearch"
       v-model.trim="strFilm" 
       type="text" placeholder="Cerca qui il tuo film...">
@@ -30,6 +31,11 @@ export default {
  methods:{
     startSearch(){
       this.$emit('searchFilms', this.strFilm);
+
+    },
+    reset(){
+      this.strFilm='';
+      this.startSearch();
     }
  }
 }

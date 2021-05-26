@@ -46,7 +46,6 @@ export default {
         },
       })
       .then(resp => {
-        console.log(resp.data.results);
         this.arrFilm = resp.data.results;
         console.log(this.arrFilm);
       })
