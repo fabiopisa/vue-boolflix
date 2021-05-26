@@ -2,7 +2,7 @@
   <div id="app">
     <HeadreComp
     :search="readArrFilm"
-    @startSearch="writeFilm"
+    @searchFilms="writeFilm"
     />
 
     <main>
@@ -37,6 +37,7 @@ export default {
   methods:{
     
     readArrFilm(){
+      console.log(this.query);
       axios.get(this.apiURL,{
         params:{
           api_key: this.apiKey,

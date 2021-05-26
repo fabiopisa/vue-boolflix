@@ -30,7 +30,6 @@ export default {
  methods:{
     startSearch(){
       this.$emit('searchFilms', this.strFilm);
-      console.log(this.strFilm);
     }
  }
 }
