@@ -18,7 +18,7 @@
 
 <script>
 export default {
- name:'SectionFilmComp',
+ name:'MainComp',
  props:{
    films: Array,
  }

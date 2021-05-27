@@ -5,25 +5,25 @@
     @searchFilms="writeFilm"
     />
 
-    <main>
-      <SectionFilmComp
-      :films="arrFilm"
-      />
-    </main>
+    
+    <MainComp
+    :films="arrFilm"
+    />
+    
   </div>
 </template>
 
 <script>
 import axios from 'axios';
 import HeadreComp from './components/HeadreComp.vue';
-import SectionFilmComp from './components/SectionFilmComp.vue';
+import MainComp from './components/MainComp.vue';
 
 
 export default {
   name: 'App',
   components: {
     HeadreComp,
-    SectionFilmComp
+    MainComp
     
   },
   data(){
