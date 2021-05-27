@@ -1,44 +1,44 @@
 <template>
-  <section>
-    <h2>Films</h2>
+  <main class="p-5">
+    <h2>{{ titles[type] }}</h2>
     <div class="d-flex flex-wrap">
-      <ul 
-      v-for="(film, index) in films" :key="index"
-      class="col-3 mb-5">
-      <li></li>
-      <li>{{film.title}}</li>
-      <li>{{film.original_title}}</li>
-      <li>Lingua: {{film.original_language}}</li>
-      <li>Voto: {{film.vote_average}}</li>
-    </ul>
+      <Card
+      v-for="card in list" :key="card.id"
+      :card="card"
+      />
     </div>
     
-  </section>
+  </main>
 </template>
 
 <script>
+import Card from '@/components/Card'
 export default {
  name:'MainComp',
+ components:{
+   Card
+ },
+ data(){
+   return{
+     titles:{
+       'movie': 'Film',
+       'tv': 'Serie TV'
+     },
+   }
+ },
  props:{
-   films: Array,
+   type: String,
+   list: Array,
  }
 }
 </script>
 
 <style lang="scss" scoped>
- section{
-   padding: 50px 100px;
+ main{
+   /* padding: 50px 150px 0px; */
    h2{
      margin-bottom: 30px;
      color: #ec0000c0;
-   };
-   ul{
-     color: #FFFFFF;
-     border-left: 1px solid #FFFFFF;
-     li{
-       font-size: 13px;
-       padding-right: 10px;
-     };
    };
  };
 </style>

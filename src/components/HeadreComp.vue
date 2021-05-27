@@ -1,17 +1,15 @@
 <template>
-  <header class="d-flex align-items-center">
+  <header class=" col-12 d-flex align-items-center">
     <div class="logo col-3 offset-1">
       <h1>boolflix</h1>
     </div>
 
     <div class="box-search col-3 offset-4 d-flex justify-content-evenly">
       <input
-      @click="reset"
-      @keyup="startSearch"
       v-model.trim="strFilm" 
       type="text" placeholder="Cerca qui il tuo film...">
       <button
-      @click="search" 
+      @click="$emit('startSearch',{text:strFilm, type:'all'})"
       class="btn btn-outline-danger">Cerca</button>
     </div>
   </header>
@@ -20,23 +18,14 @@
 <script>
 export default {
  name:'HeaderComp',
- props:{
-   search: Function,
- },
+
  data(){
    return{
      strFilm:'',
    }
  },
  methods:{
-    startSearch(){
-      this.$emit('searchFilms', this.strFilm);
-
-    },
-    reset(){
-      this.strFilm='';
-      this.startSearch();
-    }
+    
  }
 }
 </script>

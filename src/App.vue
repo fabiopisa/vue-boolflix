@@ -1,13 +1,24 @@
 <template>
   <div id="app">
     <HeadreComp
-    :search="readArrFilm"
-    @searchFilms="writeFilm"
+    @startSearch="startSearch"
     />
 
+    <h1
+    v-if="result.movie.length === 0 && result.tv.length === 0 "
+    >
+      Nessun risultato trovato
+    </h1>
     
     <MainComp
-    :films="arrFilm"
+    v-if="result.movie.length > 0"
+    :list="result.movie"
+    type='movie'
+    />
+    <MainComp
+    v-if="result.tv.length > 0"
+    :list="result.tv"
+    type='tv'
     />
     
   </div>
@@ -28,37 +39,49 @@ export default {
   },
   data(){
     return{
-      apiURL:'https://api.themoviedb.org/3/search/movie',
+      apiURL:'https://api.themoviedb.org/3/search/',
       apiKey:'fe3d6561f77f954abef97c97d11254e0',
-      query:'',
-      arrFilm:[],
+      result:{
+        'movie':[],
+        'tv':[],
+      }
     }
   },
   methods:{
     
-    readArrFilm(){
-      console.log(this.query);
-      axios.get(this.apiURL,{
+    getApi(query, type){
+      axios.get(this.apiURL + type,{
         params:{
           api_key: this.apiKey,
-          query: this.query,
+          query: query,
           language:'it-IT',
         },
       })
       .then(resp => {
-        this.arrFilm = resp.data.results;
-        console.log(this.arrFilm);
+        this.result[type] = resp.data.results;
+        console.log('movie' ,this.result.movie);
+        console.log('serie tv' ,this.result.tv);
       })
       .catch(err =>{
         console.log(err);
       })
       
     },
+    
+    resetResults(){
+      this.result.movie = [];
+      this.result.tv = [];
+    },
 
-    writeFilm(text){
-      this.query = text;
-      console.log(this.query);
-    }
+    startSearch(obj){
+      this.resetResults();
+      if(obj.type === 'all'){
+        this.getApi(obj.text, 'movie');
+        this.getApi(obj.text, 'tv');
+      }
+    },
+
+    
 
   }
 }
@@ -66,4 +89,8 @@ export default {
 
 <style lang="scss">
 @import '@/assets/styles/general.scss';
+h1{
+  margin-left: 10%;
+  margin-top:10vh
+}
 </style>
