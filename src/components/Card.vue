@@ -5,10 +5,14 @@
     <li>{{card.original_title || card.original_name}}</li>
     <li
     v-if="card.original_language !== 'en' && card.original_language !== 'it'"
-    >Lingua: {{card.original_language}}</li>
+    >
+      Lingua: {{card.original_language}}
+    </li>
     <li
     v-if="card.original_language === 'en' || card.original_language === 'it'"
-    >Lingua: <img src="../assets/img/flag-e+'imgs[card.original_language]'+.svg" alt="flag.en"></li>
+    >
+      Lingua: <img :src="require('../assets/img/flag-'+imgs[card.original_language]+'.svg')" :alt="'flag-'+imgs[card.original_language]">
+    </li>
     <li>Voto: {{card.vote_average}}</li>
   </ul>
 </template>
