@@ -67,7 +67,6 @@ ul{
       flex-direction: column;
       align-items: center;
       .cover{
-        width: 90%;
         height: 40vh;
         margin-bottom:20px;
       }
