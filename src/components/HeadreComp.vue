@@ -6,7 +6,8 @@
 
     <div class="box-search col-3 offset-4 d-flex justify-content-evenly">
       <input
-      v-model.trim="strFilm" 
+      v-model.trim="strFilm"
+      @keyup.enter="$emit('startSearch',{text:strFilm, type:'all'})" 
       type="text" placeholder="Cerca qui il tuo film...">
       <button
       @click="$emit('startSearch',{text:strFilm, type:'all'})"
