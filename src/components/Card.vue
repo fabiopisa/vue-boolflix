@@ -19,7 +19,7 @@
     <li v-else>
       Lingua: {{card.original_language}}
     </li>
-    <li id="star">Voto: {{mathStar(card)}} </li>
+    <li class="d-flex flex-row justify-content-center" v-html="mathStar(card)"></li>
   </ul>
 </template>
 
@@ -41,14 +41,30 @@ export default {
   methods:{
     mathStar(object){
       let number = Math.round(object.vote_average / 2);
+      let starNumber=``;
+      let straNull =``;
+      let star = starNumber+straNull
+      /* if(number > 0){
+        for(var i=0; i < number; i++){
+          starNumber += `<i class="fas fa-star"></i>`;
+        };
+        for(var b=0; b = 5-number;b++){
+          straNull +=  `<i class="far fa-star"></i>`
+        }
+      }else{
+        for(var c=0; c < 5; c++){
+          starNumber += `<i class="far fa-star"></i>`;
+        }
+      } */
       for(var i=0; i < number; i++){
-       
-        return document.getElementById('star').innerHTML = '<i class="fas fa-star"></i>';
-       
+        starNumber += `<i class="fas fa-star"></i>`;
+      };
+      for(var b=0; b = 5-number;b++){
+        straNull +=  `<i class="far fa-star"></i>`;
       }
-    
+      return star
     }
-  }
+  }/* <i class="fas fa-star"></i> */
 }
 </script>
 
@@ -77,11 +93,17 @@ ul{
           color: #FFFFFF;
           margin: 25px 0;
         }
-      }
+      };
       .flag{
         width: 15px;
         margin-left: 5px;
       };
+      .star{
+        color: #FFBD00;
+        i{
+          color: #FFBD00; 
+        }
+      }
     };
 };
 </style>
