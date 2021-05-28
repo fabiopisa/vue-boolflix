@@ -19,7 +19,7 @@
     <li v-else>
       Lingua: {{card.original_language}}
     </li>
-    <li>Voto: {{card.vote_average}}</li>
+    <li id="star">Voto: {{mathStar(card)}} </li>
   </ul>
 </template>
 
@@ -37,7 +37,18 @@ export default {
        'it': 'it'
      }
    }
- }
+ },/* `<i class="far fa-star"></i>` */
+  methods:{
+    mathStar(object){
+      let number = Math.round(object.vote_average / 2);
+      for(var i=0; i < number; i++){
+       
+        return document.getElementById('star').innerHTML = '<i class="fas fa-star"></i>';
+       
+      }
+    
+    }
+  }
 }
 </script>
 
