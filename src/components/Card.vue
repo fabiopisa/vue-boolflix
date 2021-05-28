@@ -19,7 +19,7 @@
     <li v-else>
       Lingua: {{card.original_language}}
     </li>
-    <li class="d-flex flex-row justify-content-center" v-html="mathStar(card)"></li>
+    <li class="star d-flex flex-row justify-content-center" v-html="mathStar(card)"></li>
   </ul>
 </template>
 
@@ -37,34 +37,23 @@ export default {
        'it': 'it'
      }
    }
- },/* `<i class="far fa-star"></i>` */
+ },
   methods:{
     mathStar(object){
       let number = Math.round(object.vote_average / 2);
       let starNumber=``;
       let straNull =``;
-      let star = starNumber+straNull
-      /* if(number > 0){
-        for(var i=0; i < number; i++){
-          starNumber += `<i class="fas fa-star"></i>`;
-        };
-        for(var b=0; b = 5-number;b++){
-          straNull +=  `<i class="far fa-star"></i>`
-        }
-      }else{
-        for(var c=0; c < 5; c++){
-          starNumber += `<i class="far fa-star"></i>`;
-        }
-      } */
       for(var i=0; i < number; i++){
         starNumber += `<i class="fas fa-star"></i>`;
-      };
-      for(var b=0; b = 5-number;b++){
+      }
+      for(var b=0; b < (5-number);b++){
         straNull +=  `<i class="far fa-star"></i>`;
       }
+      let star = starNumber+straNull;
+      console.log(star);
       return star
     }
-  }/* <i class="fas fa-star"></i> */
+  }
 }
 </script>
 
@@ -81,7 +70,7 @@ ul{
         width: 90%;
         height: 40vh;
         margin-bottom:20px;
-      };
+      }
       .not-found{
         width: 90%;
         height: 40vh;
@@ -93,16 +82,13 @@ ul{
           color: #FFFFFF;
           margin: 25px 0;
         }
-      };
+      }
       .flag{
         width: 15px;
         margin-left: 5px;
-      };
-      .star{
+      }
+      &.star{
         color: #FFBD00;
-        i{
-          color: #FFBD00; 
-        }
       }
     };
 };
