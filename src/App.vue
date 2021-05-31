@@ -3,12 +3,13 @@
     <HeadreComp
     @startSearch="startSearch"
     />
-
     <h1
     v-if="result.movie.length === 0 && result.tv.length === 0 "
     >
       Nessun risultato trovato
     </h1>
+
+    <h2 class="home-films" v-if="TitleMoments === true">Titoli del momento</h2>
     
     <MainComp
     v-if="result.movie.length > 0"
@@ -44,8 +45,25 @@ export default {
       result:{
         'movie':[],
         'tv':[],
-      }
+      },
+      TitleMoments:true,
     }
+  },
+  created(){
+    let type = 'movie'
+    axios.get('https://api.themoviedb.org/3/movie/popular',{
+      params:{
+        api_key: this.apiKey,
+        language: 'it-IT'
+      }
+    })
+    .then(res => {
+      this.result[type] = res.data.results;
+    })
+    .catch(err => {
+      console.log(err);
+    })
+    
   },
   methods:{
     
@@ -74,16 +92,15 @@ export default {
     },
 
     startSearch(obj){
+      this.TitleMoments = false;
       this.resetResults();
       if(obj.type === 'all'){
         this.getApi(obj.text, 'movie');
         this.getApi(obj.text, 'tv');
       }
     },
-
-    
-
-  }
+  },
+  
 }
 </script>
 
@@ -92,5 +109,13 @@ export default {
 h1{
   margin-left: 10%;
   margin-top:10vh
+}
+h2.home-films{
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 0px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #FFFFFF;
 }
 </style>

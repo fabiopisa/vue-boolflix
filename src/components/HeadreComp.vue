@@ -33,8 +33,8 @@ export default {
 
 <style lang="scss" scoped>
 header{
-  background-color:#000000;
   height: 80px;
+  border-bottom: 2px solid #EC0000;
   .logo{
     h1{
       color: #EC0000;
