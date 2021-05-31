@@ -7,7 +7,6 @@
       :card="card"
       />
     </div>
-    
   </main>
 </template>
 
@@ -35,10 +34,12 @@ export default {
 
 <style lang="scss" scoped>
  main{
-   /* padding: 50px 150px 0px; */
    h2{
      margin-bottom: 30px;
      color: #ec0000c0;
+     margin-left: 15px;
+     font-size: 50px;
+     text-shadow: 1px 5px 10px rgba(0,0,0,0.5)
    };
  };
 </style>
