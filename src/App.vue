@@ -10,14 +10,37 @@
     </h1>
 
     <h2 class="home-films" v-if="TitleMoments === true">Titoli del momento</h2>
+
+    <ul class="nav-list d-flex justify-content-evenly"
+    v-if="listNav === true"
+    >
+      <li 
+      :class="(filmShow === true && tvShow === true) ? 'active' : null"
+      @click="filmShow = true, tvShow = true"
+      >
+        All
+      </li>
+      <li
+      :class="(filmShow === true && tvShow === false) ? 'active' : null"
+      @click="filmShow = true, tvShow = false"
+      >
+        Film
+      </li>
+      <li
+      :class="(filmShow === false && tvShow === true) ? 'active' : null"
+      @click="filmShow = false, tvShow = true"
+      >
+        Serie TV
+      </li>
+    </ul>
     
     <MainComp
-    v-if="result.movie.length > 0"
+    v-if="result.movie.length > 0 && filmShow === true"
     :list="result.movie"
     type='movie'
     />
     <MainComp
-    v-if="result.tv.length > 0"
+    v-if="result.tv.length > 0 && tvShow === true"
     :list="result.tv"
     type='tv'
     />
@@ -47,6 +70,9 @@ export default {
         'tv':[],
       },
       TitleMoments:true,
+      filmShow:true,
+      tvShow:true,
+      listNav:true
     }
   },
   created(){
@@ -106,16 +132,6 @@ export default {
 
 <style lang="scss">
 @import '@/assets/styles/general.scss';
-h1{
-  margin-left: 10%;
-  margin-top:10vh
-}
-h2.home-films{
-  text-align: center;
-  margin-top: 20px;
-  margin-bottom: 0px;
-  font-size: 40px;
-  font-weight: bold;
-  color: #FFFFFF;
-}
+@import '@/assets/styles/stylesApp.scss';
+
 </style>

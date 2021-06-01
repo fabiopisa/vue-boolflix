@@ -1,7 +1,9 @@
 <template>
   <header class=" col-12 d-flex align-items-center">
     <div class="logo col-3 offset-1">
-      <h1>boolflix</h1>
+      <h1
+      @click="replacePage()"
+      >boolflix</h1>
     </div>
 
     <div class="box-search col-3 offset-4 d-flex justify-content-evenly">
@@ -26,7 +28,9 @@ export default {
    }
  },
  methods:{
-    
+   replacePage(){
+     location.replace('http://localhost:8080/')
+   } 
  }
 }
 </script>
@@ -40,6 +44,7 @@ header{
       color: #EC0000;
       text-transform: uppercase;
       margin:0;
+      cursor: pointer;
     };
   };
   .box-search{

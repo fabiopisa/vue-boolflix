@@ -1,0 +1,32 @@
+h1{
+  margin-left: 10%;
+  margin-top:10vh
+}
+h2.home-films{
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 0px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+.nav-list{
+  width: 250px;
+  font-size: 20px;
+  color:#EC0000;
+  position: absolute;
+  right: 5%;
+  top: 19vh;
+  li{
+    cursor: pointer;
+    &:hover{
+      color: #808080;
+      font-size: 25px;
+    }
+    &.active{
+      color: #FFFFFF;
+      font-weight: bold;
+      font-size: 25px;
+    }
+  }
+}
