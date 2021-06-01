@@ -15,7 +15,7 @@
     >
       <li
        :class="(filmShow === true && tvShow === false && homeShow === true) ? 'active' : null"
-       @click="replacePage()"
+       @click="getHome()"
       >
         Home
       </li>
@@ -97,6 +97,25 @@ export default {
     
   },
   methods:{
+    getHome(){
+      this.filmShow= true,
+      this.tvShow = false,
+      this.homeShow = true,
+      this.TitleMoments = true
+      let type = 'movie'
+      axios.get('https://api.themoviedb.org/3/movie/popular',{
+        params:{
+          api_key: this.apiKey,
+          language: 'it-IT'
+        }
+      })
+      .then(res => {
+        this.result[type] = res.data.results;
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    },
     
     getApi(query, type){
       axios.get(this.apiURL + type,{
@@ -132,11 +151,7 @@ export default {
         this.getApi(obj.text, 'movie');
         this.getApi(obj.text, 'tv');
       }
-    },
-
-    replacePage(){
-      location.replace('http://localhost:8080/')
-    } 
+    }, 
   },
   
 }
