@@ -11,24 +11,29 @@
 
     <h2 class="home-films" v-if="TitleMoments === true">Titoli del momento</h2>
 
-    <ul class="nav-list d-flex justify-content-evenly"
-    v-if="listNav === true"
+    <ul class="nav-list d-flex justify-content-evenly align-items-center"
     >
+      <li
+       :class="(filmShow === true && tvShow === false && homeShow === true) ? 'active' : null"
+       @click="replacePage()"
+      >
+        Home
+      </li>
       <li 
-      :class="(filmShow === true && tvShow === true) ? 'active' : null"
-      @click="filmShow = true, tvShow = true"
+      :class="(filmShow === true && tvShow === true && homeShow === false) ? 'active' : null"
+      @click="filmShow = true, tvShow = true, homeShow=false"
       >
         All
       </li>
       <li
-      :class="(filmShow === true && tvShow === false) ? 'active' : null"
-      @click="filmShow = true, tvShow = false"
+      :class="(filmShow === true && tvShow === false && homeShow === false) ? 'active' : null"
+      @click="filmShow = true, tvShow = false, homeShow=false"
       >
         Film
       </li>
       <li
-      :class="(filmShow === false && tvShow === true) ? 'active' : null"
-      @click="filmShow = false, tvShow = true"
+      :class="(filmShow === false && tvShow === true && homeShow === false) ? 'active' : null"
+      @click="filmShow = false, tvShow = true, homeShow=false"
       >
         Serie TV
       </li>
@@ -71,8 +76,8 @@ export default {
       },
       TitleMoments:true,
       filmShow:true,
-      tvShow:true,
-      listNav:true
+      tvShow:false,
+      homeShow:true
     }
   },
   created(){
@@ -119,12 +124,19 @@ export default {
 
     startSearch(obj){
       this.TitleMoments = false;
+      this.filmShow = true;
+      this.tvShow = true;
+      this.homeShow = false;
       this.resetResults();
       if(obj.type === 'all'){
         this.getApi(obj.text, 'movie');
         this.getApi(obj.text, 'tv');
       }
     },
+
+    replacePage(){
+      location.replace('http://localhost:8080/')
+    } 
   },
   
 }

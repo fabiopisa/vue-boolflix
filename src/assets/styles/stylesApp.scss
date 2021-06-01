@@ -11,22 +11,23 @@ h2.home-films{
   color: #FFFFFF;
 }
 .nav-list{
-  width: 250px;
-  font-size: 20px;
+  width: 320px;
+  font-size: 18px;
   color:#EC0000;
   position: absolute;
-  right: 5%;
-  top: 19vh;
+  right: 4%;
+  top: 150px;
   li{
     cursor: pointer;
     &:hover{
       color: #808080;
-      font-size: 25px;
+      font-size: 23px;
     }
     &.active{
       color: #FFFFFF;
       font-weight: bold;
-      font-size: 25px;
+      font-size: 28px;
+
     }
   }
 }

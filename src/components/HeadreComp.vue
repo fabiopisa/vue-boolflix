@@ -1,12 +1,12 @@
 <template>
   <header class=" col-12 d-flex align-items-center">
-    <div class="logo col-3 offset-1">
+    <div class="logo col-10 offset-2 col-sm-3 offset-sm-1">
       <h1
       @click="replacePage()"
       >boolflix</h1>
     </div>
 
-    <div class="box-search col-3 offset-4 d-flex justify-content-evenly">
+    <div class="box-search col-10 offset-1 col-sm-3 offset-sm-4 d-flex justify-content-evenly">
       <input
       v-model.trim="strFilm"
       @keyup.enter="$emit('startSearch',{text:strFilm, type:'all'})" 
@@ -28,9 +28,9 @@ export default {
    }
  },
  methods:{
-   replacePage(){
-     location.replace('http://localhost:8080/')
-   } 
+    replacePage(){
+      location.replace('http://localhost:8080/')
+    } 
  }
 }
 </script>
@@ -59,5 +59,10 @@ header{
     };
   };
 
+}
+@media (max-width:576px){
+  header{
+    flex-direction: column;
+  }
 }
 </style>
